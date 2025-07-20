@@ -38,7 +38,6 @@
 
 // export default AppNavigator;
 
-
 //Bottom Navigation
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -46,14 +45,17 @@ import HomeScreen from 'app/(tabs)/HomeScreen';
 import ProfileScreen from 'app/(tabs)/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomHeader from 'components/CustomHeader';
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
-    <SafeAreaView className="flex-1 ">
+    <>
+      <CustomHeader />
       <Tab.Navigator
         screenOptions={({ route }) => ({
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName = 'help';
             if (route.name == 'Home') {
@@ -67,14 +69,11 @@ const AppNavigator = () => {
           },
           tabBarActiveTintColor: '#006400',
           tabBarInactiveTintColor: 'green',
-          tabBarLabelStyle: {
-            paddingBottom: 6,
-          },
         })}>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
-    </SafeAreaView>
+    </>
   );
 };
 

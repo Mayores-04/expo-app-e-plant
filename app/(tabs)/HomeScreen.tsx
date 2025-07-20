@@ -1,11 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { router } from 'expo-router'
 
 const HomeScreen = () => {
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View className="flex-1 items-center justify-center bg-green-200">
+      <Pressable
+        className='bg-green-400 p-4 rounded-full'
+        onPress={() => router.push("/(tabs)/CartScreen")}
+      >
+        <Text>Cart</Text>
+      </Pressable>
     </View>
   )
 }
