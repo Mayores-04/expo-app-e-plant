@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "e-plant",
+    "scheme": "e-plant",
     "slug": "e-plant",
     "version": "1.0.0",
 
