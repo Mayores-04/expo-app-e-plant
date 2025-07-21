@@ -8,7 +8,7 @@ const Login = () => {
     <SafeAreaView className="flex-1 items-center justify-center bg-green-200">
       <Pressable
         className='bg-green-400 p-4 rounded-full'
-        onPress={() => router.push("/(navigation)/AppNavigator")}
+        onPress={() => router.push("/(navigation)/HomeNavigator")}
       >
         <Text>Login</Text>
       </Pressable>

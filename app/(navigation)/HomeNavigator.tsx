@@ -39,12 +39,10 @@
 // export default AppNavigator;
 
 //Bottom Navigation
-import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from 'app/(tabs)/HomeScreen';
 import ProfileScreen from 'app/(tabs)/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomHeader from 'components/CustomHeader';
 
 const Tab = createBottomTabNavigator();
