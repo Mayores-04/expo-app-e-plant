@@ -47,7 +47,7 @@ import CustomHeader from 'components/CustomHeader';
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigator = () => {
+const HomeNavigator = () => {
   return (
     <>
       <CustomHeader />
@@ -75,4 +75,4 @@ const AppNavigator = () => {
   );
 };
 
-export default AppNavigator;
+export default HomeNavigator;
