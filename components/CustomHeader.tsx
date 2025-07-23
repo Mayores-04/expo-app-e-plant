@@ -1,4 +1,4 @@
-import { View, Text, Pressable, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Pressable, TouchableWithoutFeedback, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, usePathname } from 'expo-router';
 import { useState } from 'react';
@@ -11,10 +11,12 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import SlidingDrawer from './SlidingDrawer';
 
 const CustomHeader = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
   const pathname = usePathname();
 
   const toggleAnim = useSharedValue(0);
@@ -82,6 +84,8 @@ const CustomHeader = () => {
     transform: [{ translateX: drawerTranslateX.value }],
   }));
 
+  const insets = useSafeAreaInsets();
+
   return (
     <>
       {/* Header */}
@@ -94,15 +98,15 @@ const CustomHeader = () => {
               className="relative h-16 w-16 items-center justify-center rounded-2xl bg-gray-100 ">
               <Animated.View
                 style={topLineTransform}
-                className={`absolute left-4 top-4 h-1.5 w-5 rounded-full ${isDrawerOpen ? "bg-red-600" : "bg-green-600"}`}
+                className={`absolute left-4 top-4 h-1.5 w-5 rounded-full ${isDrawerOpen ? 'bg-red-600' : 'bg-green-600'}`}
               />
               <Animated.View
                 style={centerLineTransform}
-                className={`h-1.5 w-8 rounded-full ${isDrawerOpen ? "bg-red-600" : "bg-green-600"}`}
+                className={`h-1.5 w-8 rounded-full ${isDrawerOpen ? 'bg-red-600' : 'bg-green-600'}`}
               />
               <Animated.View
-                style={ bottomLineTransform }
-                className={`absolute bottom-4 right-4 h-1.5 w-5 rounded-full  ${isDrawerOpen ? "bg-red-600" : "bg-green-600"}`}
+                style={bottomLineTransform}
+                className={`absolute bottom-4 right-4 h-1.5 w-5 rounded-full  ${isDrawerOpen ? 'bg-red-600' : 'bg-green-600'}`}
               />
             </Animated.View>
           </View>
@@ -118,44 +122,15 @@ const CustomHeader = () => {
 
       {/* Drawer + Backdrop */}
       {isDrawerOpen && (
-        <>
-          {/* Dimmed Background */}
-          <TouchableWithoutFeedback onPress={closeDrawer}>
-            <View className="absolute inset-0 z-40 bg-black/50" />
-          </TouchableWithoutFeedback>
-
-          {/* Sliding Drawer */}
-          <Animated.View
-            style={drawerAnimatedStyle}
-            className="absolute bottom-0 left-0 top-[125.8] z-50 w-[70%] bg-green-800 p-4 ">
-            {pathItems.map((item, index) => {
-              const isActive = pathname === `/${item.path}`;
-              return (
-                <Pressable
-                  key={index}
-                  onPress={() => {
-                    closeDrawer();
-                    router.push(`/${item.path}`);
-                  }}
-                  className={`mb-2 w-full rounded px-4 py-3 ${
-                    isActive ? 'bg-green-900' : 'bg-green-500'
-                  }`}>
-                  <Text className="font-bold text-xl text-white">{item.label}</Text>
-                </Pressable>
-              );
-            })}
-
-            <Pressable
-              onPress={() => {
-                closeDrawer();
-                setShowLogoutModal(true);
-              }}
-              className="mt-4 w-full rounded bg-red-600 px-4 py-3">
-              <Text className="text-base text-white">Logout</Text>
-            </Pressable>
-          </Animated.View>
-        </>
+        <SlidingDrawer
+          drawerAnimatedStyle={drawerAnimatedStyle}
+          insets={insets}
+          pathItems={pathItems}
+          pathname={pathname}
+          closeDrawer={closeDrawer}
+        />
       )}
+
     </>
   );
 };

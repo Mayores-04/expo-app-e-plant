@@ -1,13 +1,11 @@
-import { View, Text } from 'react-native';
-import React from 'react';
 import CustomHeader from 'components/CustomHeader';
-import { Slot, Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 
-export default function layout() {
-  return (
-    <>
-      <CustomHeader />
-      <Slot />
-    </>
-  );
-}
+const _layout = () => {
+  return <>
+    <CustomHeader/>
+    <Slot/>
+  </>;
+};
+
+export default _layout;
