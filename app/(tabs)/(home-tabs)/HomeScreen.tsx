@@ -1,42 +1,80 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import Modal from 'react-native-modal';
+import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { Plant, plants } from 'StaticData/Plants';
+import { Tool, tools } from 'StaticData/Tools';
+
+const screenWidth = Dimensions.get('window').width;
+const itemWidth = (screenWidth - 65) / 2;
+
+type Product = Plant | Tool;
+
+const Item = ({ item }: { item: Product }) => (
+  <View
+    className="m-2 rounded-lg bg-white p-3 shadow-md shadow-black"
+    style={{
+      width: itemWidth,
+      elevation: 5,
+    }}>
+    <Image
+      source={{ uri: item.image }}
+      style={{ width: '100%', aspectRatio: 1, borderRadius: 10 }}
+      resizeMode="contain"
+    />
+    <Text className="mt-2 text-base font-bold">{item.name}</Text>
+    <Text className="text-xs text-gray-600" numberOfLines={2}>
+      {item.description}
+    </Text>
+    <Text className="mt-1 font-semibold text-green-700">${item.price.toFixed(2)}</Text>
+  </View>
+);
+
 const HomeScreen = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedGroupIndex, setSelectedGroupIndex] = useState(0);
+
+  const ItemGroups = [
+    {
+      label: 'All Plants',
+      data: plants.filter((plant) => !plant.onSale),
+    },
+    {
+      label: 'Sale Plants',
+      data: plants.filter((plant) => plant.onSale),
+    },
+    {
+      label: 'Tools',
+      data: tools,
+    },
+  ];
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold">HomeScreen</Text>
+    <View className="w-full flex-1 items-center bg-[#B0CEB9] p-2 px-5">
+      {/*  */}
+      <View className=" flex w-full flex-row justify-between p-2">
+        {ItemGroups.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => setSelectedGroupIndex(index)}
+            className={`rounded-lg border px-5 py-3 shadow-md shadow-black ${
+              selectedGroupIndex === index ? 'bg-green-300' : 'bg-[#E6E6E6]'
+            }`}
+            style={{ elevation: 5 }}
+            activeOpacity={0.6}>
+            <Text>{item.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
 
-      <Pressable onPress={() => setModalVisible(true)} className="mt-4 rounded bg-blue-500 p-2">
-        <Text className="text-black">Open Modal</Text>
-      </Pressable>
-      <Modal
-        isVisible={modalVisible}
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-        backdropTransitionOutTiming={0}
-        useNativeDriver={true}
-        onBackButtonPress={() => setModalVisible(false)}
-      >
-        <View className="flex-1 items-center justify-center">
-          <View className="w-[250px] items-center rounded-xl bg-white p-5">
-            <Text className="mb-4 text-lg font-semibold">Logout?</Text>
-
-            <Pressable
-              onPress={() => setModalVisible(false)}
-              className="rounded bg-red-500 px-4 py-2">
-              <Text className="text-white">Yes, Logout</Text>
-            </Pressable>
-
-            <Pressable onPress={() => setModalVisible(false)} className="mt-2">
-              <Text className="text-blue-500">Cancel</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
+      {/* Item List */}
+      <FlatList
+        data={ItemGroups[selectedGroupIndex].data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Item item={item} />}
+        numColumns={2}
+        contentContainerClassName="flex justify-between"
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };
-
 export default HomeScreen;

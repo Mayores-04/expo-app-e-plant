@@ -10,6 +10,10 @@ const Login = () => {
   const [password, onChangePassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const handleLogin = () =>{
+    console.log("login pressed!");
+    router.replace('/(tabs)/HomeScreen')
+  }
   return (
     <SafeAreaView className="w-full flex-1 items-center justify-around bg-[#81A48B] ">
       <View className="w-[80%] items-center justify-center ">
@@ -53,7 +57,7 @@ const Login = () => {
           <TouchableOpacity
             className="w-full items-center rounded-md bg-green-400 p-2"
             activeOpacity={0.6}
-            onPress={() => router.replace('/(tabs)/HomeScreen')}>
+            onPress={handleLogin}>
             <Text className="text-lg font-semibold text-white">Login</Text>
           </TouchableOpacity>
           <View className="flex w-full flex-row justify-around gap-5">

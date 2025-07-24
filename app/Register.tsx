@@ -10,8 +10,12 @@ const Register = () => {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [confirmPassword, onChangeConfirmPassword] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSignUp = () => {
+    console.log("sign up pressed!");
+    router.replace('/Login');
+  }
   return (
     <SafeAreaView className="w-full flex-1 items-center justify-around bg-[#81A48B] ">
       <View className="w-[80%] items-center justify-center ">
@@ -66,7 +70,7 @@ const Register = () => {
           <TouchableOpacity
             className="w-full items-center rounded-md bg-green-400 p-2"
             activeOpacity={0.6}
-            onPress={() => router.replace('/Login')}>
+            onPress={handleSignUp}>
             <Text className="text-lg font-semibold text-white">Register</Text>
           </TouchableOpacity>
           <View className="flex w-full flex-row justify-around gap-5 ">
