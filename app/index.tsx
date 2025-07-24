@@ -6,13 +6,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const index = () => {
   return (
     <SafeAreaView className="flex-1 items-center justify-center">
-        <Text className='text-5xl p-4 text-green-800'>E-Plant</Text>
+      <Text className="p-4 text-5xl text-green-800">E-Plant</Text>
 
-      <Pressable
-        onPress={() => router.push('/Login')}
-        className='bg-green-400 p-4 rounded-full'
-      > 
-        <Text className='text-white font-bold'>Get Started</Text>
+      <Pressable onPress={() => router.push('/Login')} className="rounded-full bg-green-400 p-4">
+        <Text className="font-bold text-white">Get Started</Text>
       </Pressable>
     </SafeAreaView>
   );
