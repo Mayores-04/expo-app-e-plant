@@ -4,19 +4,42 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
+  DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { View } from 'react-native';
+import { useRouter } from 'expo-router';
 
-const CustomDrawerContent = (props: DrawerContentComponentProps) => (
-  <DrawerContentScrollView {...props}>
-    <View style={{ paddingVertical: 10, gap: 12 }}>
-      <DrawerItemList {...props} />
-    </View>
-  </DrawerContentScrollView>
-);
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    //Add logic for real logout
+    router.replace('/Login'); 
+  };
+
+  return (
+    <DrawerContentScrollView {...props}>
+      <View style={{ paddingVertical: 10, gap: 12 }}>
+        <DrawerItemList {...props} />
+        <DrawerItem
+          label="Logout"
+          icon={({ size, color }) => (
+            <Ionicons name="log-out-outline" size={size} color={color} />
+          )}
+          onPress={handleLogout}
+          activeBackgroundColor='#2C2C2C'
+          activeTintColor='#C5C5C5'
+          inactiveBackgroundColor='#f87171'
+          labelStyle={{ color: '#000000' }} 
+        />
+      </View>
+    </DrawerContentScrollView>
+  );
+};
 
 const Layout = () => {
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer
