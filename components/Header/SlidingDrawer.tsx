@@ -35,7 +35,7 @@ const SlidingDrawer = ({
       {/* Drawer */}
       <Animated.View
         style={[drawerAnimatedStyle, { top: insets.top + 84 }]}
-        className="absolute bottom-0 left-0 top-0 z-50 w-[70%] bg-green-800 p-4">
+        className="absolute bottom-0 left-0 top-0 z-50 w-[70%] bg-[#C5C5C5] p-4">
         {pathItems.map((item, index) => {
           const isActive = pathname === `/${item.path}`;
           return (
@@ -46,7 +46,7 @@ const SlidingDrawer = ({
                 router.push(`/${item.path}`);
               }}
               className={`mb-2 w-full rounded px-4 py-3 ${
-                isActive ? 'bg-green-900' : 'bg-green-500'
+                isActive ? 'bg-[#2C2C2C]' : 'bg-[#575757]'
               }`}>
               <Text className="text-xl font-bold text-white">{item.label}</Text>
             </Pressable>

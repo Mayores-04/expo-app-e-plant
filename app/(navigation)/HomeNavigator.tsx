@@ -1,78 +1,78 @@
-//Top Navigation
+  //Top Navigation
 
-// import HomeScreen from 'app/(tabs)/HomeScreen';
-// import ProfileScreen from 'app/(tabs)/ProfileScreen';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import { SafeAreaView } from 'react-native-safe-area-context';
+  // import HomeScreen from 'app/(tabs)/HomeScreen';
+  // import ProfileScreen from 'app/(tabs)/ProfileScreen';
+  // import Ionicons from 'react-native-vector-icons/Ionicons';
+  // import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+  // import { SafeAreaView } from 'react-native-safe-area-context';
 
-// const Tab = createMaterialTopTabNavigator();
+  // const Tab = createMaterialTopTabNavigator();
 
-// const AppNavigator = () => {
-//   return (
-//     <SafeAreaView className='flex-1'>
-//       <Tab.Navigator
-//         screenOptions={({ route }) => ({
-//           headerShown: false,
-//           tabBarLabel: ({ focused, color     }) => {
-//             let iconName: string = 'help';
-//             if (route.name == 'Home') {
-//               iconName = focused ? 'home' : 'home-outline';
-//             } else if (route.name == 'Profile') {
-//               iconName = focused ? 'person' : 'person-outline';
-//             } else {
-//               iconName = 'help-circle-outline';
-//             }
-//             return <Ionicons name={iconName} color={color} size={20} />;
-//           },
-//           tabBarActiveTintColor: '#006400',
-//           tabBarInactiveTintColor: 'green',
-//           swipeEnabled: false
-//         })}>
-//         <Tab.Screen name="Home" component={HomeScreen} />
-//         <Tab.Screen name="Profile" component={ProfileScreen} />
-//       </Tab.Navigator>
-//     </SafeAreaView>
-//   );
-// };
+  // const AppNavigator = () => {
+  //   return (
+  //     <SafeAreaView className='flex-1'>
+  //       <Tab.Navigator
+  //         screenOptions={({ route }) => ({
+  //           headerShown: false,
+  //           tabBarLabel: ({ focused, color     }) => {
+  //             let iconName: string = 'help';
+  //             if (route.name == 'Home') {
+  //               iconName = focused ? 'home' : 'home-outline';
+  //             } else if (route.name == 'Profile') {
+  //               iconName = focused ? 'person' : 'person-outline';
+  //             } else {
+  //               iconName = 'help-circle-outline';
+  //             }
+  //             return <Ionicons name={iconName} color={color} size={20} />;
+  //           },
+  //           tabBarActiveTintColor: '#006400',
+  //           tabBarInactiveTintColor: 'green',
+  //           swipeEnabled: false
+  //         })}>
+  //         <Tab.Screen name="Home" component={HomeScreen} />
+  //         <Tab.Screen name="Profile" component={ProfileScreen} />
+  //       </Tab.Navigator>
+  //     </SafeAreaView>
+  //   );
+  // };
 
-// export default AppNavigator;
+  // export default AppNavigator;
 
-//Bottom Navigation
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from 'app/(tabs)/HomeScreen';
-import ProfileScreen from 'app/(tabs)/ProfileScreen';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import CustomHeader from 'components/CustomHeader';
+  //Bottom Navigation
+  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+  import HomeScreen from 'app/(tabs)/(home-tabs)/HomeScreen';
+  import ProfileScreen from 'app/(tabs)/(home-tabs)/ProfileScreen';
+  import Ionicons from 'react-native-vector-icons/Ionicons';
+  import CustomHeader from 'components/Header/CustomHeader';
 
-const Tab = createBottomTabNavigator();
+  const Tab = createBottomTabNavigator();
 
-const HomeNavigator = () => {
-  return (
-    <>
-      <CustomHeader />
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName = 'help';
-            if (route.name == 'Home') {
-              iconName = focused ? 'home' : 'home-outline';
-            } else if (route.name == 'Profile') {
-              iconName = focused ? 'person' : 'person-outline';
-            } else {
-              iconName = 'help-circle-outline';
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#006400',
-          tabBarInactiveTintColor: 'green',
-        })}>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
-      </Tab.Navigator>
-    </>
-  );
-};
+  const HomeNavigator = () => {
+    return (
+      <>
+        <CustomHeader />
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName = 'help';
+              if (route.name == 'Home') {
+                iconName = focused ? 'home' : 'home-outline';
+              } else if (route.name == 'Profile') {
+                iconName = focused ? 'person' : 'person-outline';
+              } else {
+                iconName = 'help-circle-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#006400',
+            tabBarInactiveTintColor: 'green',
+          })}>
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Profile" component={ProfileScreen} />
+        </Tab.Navigator>
+      </>
+    );
+  };
 
-export default HomeNavigator;
+  export default HomeNavigator;

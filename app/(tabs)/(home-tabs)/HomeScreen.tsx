@@ -14,8 +14,8 @@ const HomeScreen = () => {
 
       <Modal
         isVisible={modalVisible}
-        animationIn="slideInLeft"
-        animationOut="slideOutLeft"
+        animationIn="fadeIn"
+        animationOut="fadeOut"
         backdropOpacity={0.4}
         onBackButtonPress={() => setModalVisible(false)}>
         <View className="flex-1 items-center justify-center">

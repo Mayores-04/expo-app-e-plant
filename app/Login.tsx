@@ -9,7 +9,8 @@ const Login = () => {
       <Pressable
         className='bg-green-400 p-4 rounded-full'
         // onPress={() => router.push("/(drawer)/(tabs)/HomeScreen")}
-        onPress={() => router.push("/(navigation)/HomeNavigator")}
+        // onPress={() => router.push("/(navigation)/HomeNavigator")}
+        onPress={() => router.push("/(tabs)/HomeScreen")}
       >
         <Text>Login</Text>
       </Pressable>

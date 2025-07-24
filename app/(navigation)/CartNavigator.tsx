@@ -1,15 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CartScreen from 'app/(cart-tabs)/CartScreen';
-import ArchiveScreen from 'app/(cart-tabs)/ArchiveScreen';
+import CartScreen from 'app/(tabs)/(cart-tabs)/CartScreen';
+import ArchiveScreen from 'app/(tabs)/(cart-tabs)/ArchiveScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CustomHeader from 'components/CustomHeader';
+// import CustomHeader from 'components/CustomHeader';
 
 const Tab = createBottomTabNavigator();
 
 const CartNavigator = () => {
   return (
     <>
-      <CustomHeader />
+      {/* <CustomHeader /> */}
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
