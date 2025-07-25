@@ -1,17 +1,22 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Drawer from 'expo-router/drawer'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
-import { useRouter } from 'expo-router'
+import { View, Text } from 'react-native';
+import React from 'react';
+import Drawer from 'expo-router/drawer';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+import { router, useRouter } from 'expo-router';
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const router = useRouter();
 
   const handleLogout = () => {
     //Add logic for real logout
-    router.replace('/Login'); 
+    router.replace('/Login');
   };
 
   return (
@@ -20,14 +25,12 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         <DrawerItemList {...props} />
         <DrawerItem
           label="Logout"
-          icon={({ size, color }) => (
-            <Ionicons name="log-out-outline" size={size} color={color} />
-          )}
+          icon={({ size, color }) => <Ionicons name="log-out-outline" size={size} color={color} />}
           onPress={handleLogout}
-          activeBackgroundColor='#2C2C2C'
-          activeTintColor='#C5C5C5'
-          inactiveBackgroundColor='#f87171'
-          labelStyle={{ color: '#000000' }} 
+          activeBackgroundColor="#2C2C2C"
+          activeTintColor="#C5C5C5"
+          inactiveBackgroundColor="#f87171"
+          labelStyle={{ color: '#000000' }}
         />
       </View>
     </DrawerContentScrollView>
@@ -49,7 +52,7 @@ const AppNavigator = () => {
           },
         }}>
         <Drawer.Screen
-          name="(home-tabs)/HomeScreen"
+          name="HomeScreen"
           options={{
             headerTitle: 'E-Plant',
             drawerLabel: 'Home',
@@ -59,7 +62,7 @@ const AppNavigator = () => {
           }}
         />
         <Drawer.Screen
-          name="(home-tabs)/ProfileScreen"
+          name="ProfileScreen"
           options={{
             headerTitle: 'Profile',
             drawerLabel: 'Profile',
@@ -99,9 +102,18 @@ const AppNavigator = () => {
             ),
           }}
         />
+        <Drawer.Screen
+          name="[OrderSummary]/index"
+          options={{
+            drawerItemStyle: { display: 'none' },
+            drawerLabel: () => null,
+            drawerIcon: () => null,
+            headerTitle: 'Order Summary',
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
-  )
-}
+  );
+};
 
 export default AppNavigator;
