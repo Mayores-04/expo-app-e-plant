@@ -120,8 +120,8 @@ const HomeScreen = () => {
   ];
 
   const onSaleProducts: GroupedItem[] = [
-    ...plants.filter((p) => p.onSale).map((p) => ({ type: 'item', data: p }) as GroupedItem),
-    ...tools.filter((t) => t.onSale).map((t) => ({ type: 'item', data: t }) as GroupedItem),
+    ...plants.filter((p) => p.onSale).map((p) => ({ type: 'item', data: p, discountedPrice: parseFloat((p.price * 0.8).toFixed(2)) }) as GroupedItem),
+    ...tools.filter((t) => t.onSale).map((t) => ({ type: 'item', data: t, discountedPrice: parseFloat((t.price * 0.8).toFixed(2)) }) as GroupedItem),
   ];
 
   const ItemGroups: {
