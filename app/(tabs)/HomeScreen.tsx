@@ -70,7 +70,7 @@ const Item = ({ item }: { item: Product }) => {
       <Text className="text-xs text-gray-600" numberOfLines={2}>
         {item.description}
       </Text>
-      <Text className="mt-1 font-semibold text-green-700">${item.price.toFixed(2)}</Text>
+      <Text className="mt-1 font-semibold text-green-700">₱{item.price.toFixed(2)}</Text>
 
       {/*  */}
       <View className="flex-row items-center justify-center px-2 ">
